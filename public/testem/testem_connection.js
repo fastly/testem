@@ -107,6 +107,10 @@ function init() {
     TestemConnection.emit.apply(this, parent.Testem.emitConnectionQueue.shift());
   }
   parent.Testem.emitConnection = TestemConnection.emit;
+
+  window.onbeforeunload = function() {
+    TestemConnection.emit('log', 'about to unload testem window: ' + document.location.href);
+  };
 }
 
 window.TestemConnection = {
